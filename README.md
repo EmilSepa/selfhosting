@@ -15,6 +15,10 @@ Meanwhile i switched to Unraid. This Repo will not be expanded.
 
 ## To-Do:
 
+### Before deployment:
+
+Download all files and check for comments inside the code.  
+I marked all lines that need a change. 
 
 ### During deployment:
 During the deployment of your containers, you have to wait for a few minutes, until Traefik receives the Certificates.  
