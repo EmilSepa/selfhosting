@@ -12,6 +12,7 @@ services:
     labels:
       # Frontend
       - "traefik.enable=true"
+      # ADD YOUR DOMAIN HERE INSTEAD OF "your.domain.cm"
       - "traefik.http.routers.frontend.rule=Host(`your.domain.com`)"
       - "traefik.http.routers.frontend.entrypoints=websecure"
       - "traefik.http.services.frontend.loadbalancer.server.port=9000"
