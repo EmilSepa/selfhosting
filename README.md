@@ -15,6 +15,9 @@ Meanwhile i switched to Unraid. This Repo will not be expanded.
 
 ## To-Do:
 
-During the deployment of your containers, you have to wait for a few minutes, until Traefik receives the Certificates. 
+
+### During deployment:
+During the deployment of your containers, you have to wait for a few minutes, until Traefik receives the Certificates.  
 After that you have to set a local dns record on your dns-server (pihole, ad-guard, unbound) to redirect all your subdomains to traefik. 
-If your Traefik runs on 1.2.3.4, you have to redirect portainer.yourdomain.com to 1.2.3.4 (same for all other services). 
+If your Traefik runs on `1.2.3.4`, you have to redirect `portainer.yourdomain.com` to `1.2.3.4`(same for all other services). 
+ 
