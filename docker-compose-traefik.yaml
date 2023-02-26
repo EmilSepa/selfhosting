@@ -11,6 +11,7 @@ services:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
       - "./shared:/shared"
       - "./traefik.toml:/traefik.toml:ro" 
+# You can add this file for your dynamic configuration of traefik (middleware and routes)
       - "./traefik_dynamic.toml:/traefik_dynamic.toml:ro"
     environment:
     #Important for the dns-challenge, if you use another domain-provider, lookup the needed arguments in the offical traefik documentation
