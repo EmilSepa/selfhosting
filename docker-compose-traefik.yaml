@@ -1,0 +1,33 @@
+version: "3.3"
+
+services:
+  traefik:
+    container_name: traefik
+    image: "traefik:latest"
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "./shared:/shared"
+      - "./traefik.toml:/traefik.toml:ro" 
+      - "./traefik_dynamic.toml:/traefik_dynamic.toml:ro"
+    environment:
+    #Important for the dns-challenge, if you use another domain-provider, lookup the needed arguments in the offical traefik documentation
+      - "HETZNER_API_KEY=xxxxxxxxxxxxxxxxxxxx"
+    labels: 
+      - "traefik.enable=true"
+      - "traefik.http.routers.traefik.entrypoints=web"
+      # Please add your domain
+      - "traefik.http.routers.traefik.rule=Host(`traefik.yourdomain.com`)"
+      - "traefik.http.routers.traefik.middlewares=traefik-https-redirect"
+      - "traefik.http.middlewares.traefik-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.traefik-secure.entrypoints=websecure"
+      - "traefik.http.routers.traefik-secure.rule=Host(`traefik.yourdomain.com`)"
+      - "traefik.http.routers.traefik-secure.tls=true"
+      - "traefik.http.routers.traefik-secure.tls.certresolver=myresolver"
+      - "traefik.http.routers.traefik-secure.service=api@internal"
+      - "traefik.http.routers.traefik-secure.middlewares=traefik-auth"
+      # Please add your username and encoded Password, have a look at the documentation for basicAuth
+      - "traefik.http.middlewares.traefik-auth.basicauth.users=USER:encoded Password"
+    restart: always
