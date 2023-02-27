@@ -1,0 +1,27 @@
+version: "3"
+
+services:
+  pihole:
+    container_name: pihole
+    image: pihole/pihole:latest
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+   #Do not use port 80 --> traefik already does
+      - "8088:80/tcp"
+    environment:
+      TZ: 'Europe/London'
+ # Add your upstream dns (maybe unbound)
+ # Optional {......     
+      PIHOLE_DNS_: X.X.X.X
+      DNSSEC: 'true'
+      REV_SERVER: 'true'
+      REV_SERVER_TARGET: x.x.x.x
+      REV_SERVER_CIDR: X.X.X.X/16
+ # ............}
+    volumes:
+      - '/home/user/data/etc-pihole:/etc/pihole'
+      - '/home/user/data/etc-dnsmasq.d:/etc/dnsmasq.d'
+ # Optional
+    dns: 
+      - 127.0.0.1
