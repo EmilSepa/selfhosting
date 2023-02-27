@@ -26,3 +26,25 @@ During the deployment of your containers, you have to wait for a few minutes, un
 After that you have to set a local dns record on your dns-server (pihole, ad-guard, unbound) to redirect all your subdomains to traefik. 
 If your Traefik runs on `1.2.3.4`, you have to redirect `portainer.yourdomain.com` to `1.2.3.4`(same for all other services). 
  
+### After deployment: 
+
+You have to add the following `Labels` to your pihole container.  
+It is possible to create the whole pihole with portainer. Just use the compose-file as a blueprint. 
+
+
+`traefik.enable=true` 
+
+`traefik.http.routers.pihole.entrypoints=websecure` 
+
+```traefik.http.routers.pihole.rule=Host(`pi.yourdomain.com`)```
+
+`traefik.http.routers.pihole.service=pihole`
+
+`traefik.http.routers.pihole.tls=true` 
+
+`traefik.http.routers.pihole.tls.certresolver=myresolver`   
+
+`traefik.http.services.pihole.loadbalancer.server.port=80`   
+
+
+After that you can reach the webinterface with `pi.yourdomain.com/admin`
