@@ -1,6 +1,7 @@
 # selfhosting
-This repository includes all basic services that i selfhost on my local network, like: traefik, pihole, portainer, uptime-kuma. 
-You can expand the basics. 
+This repository includes all basic services that i selfhost on my local network, like: traefik, pihole, and portainer. 
+Feel free to expand.  
+If you study the code, you will be able to add more contaainers with https
 
 ## I wanted: 
 
