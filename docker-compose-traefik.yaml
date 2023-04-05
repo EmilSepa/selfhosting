@@ -29,6 +29,6 @@ services:
       - "traefik.http.routers.traefik-secure.tls.certresolver=myresolver"
       - "traefik.http.routers.traefik-secure.service=api@internal"
       - "traefik.http.routers.traefik-secure.middlewares=traefik-auth"
-      # Please add your username and encoded Password, have a look at the documentation for basicAuth
+      # Please add your username and encoded Password, have a look at the documentation for basicAuth and htpasswd
       - "traefik.http.middlewares.traefik-auth.basicauth.users=USER:encoded Password"
     restart: always
